@@ -1,0 +1,77 @@
+<div id="grid"></div>
+
+<script>
+    $(document).ready(function () {
+        var crudServiceBaseUrl = "/categories",
+            dataSource = new kendo.data.DataSource({
+
+                transport: {
+                    read:  {
+                        url: crudServiceBaseUrl,
+                        dataType: "json"
+                    },
+                     create: {
+                        url: crudServiceBaseUrl,
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    update: {
+                        url: function(category) {
+                            return crudServiceBaseUrl + "/" + category.id;
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "PUT"
+                    },
+                    destroy: {
+                        url: function(category) {
+                            return crudServiceBaseUrl + "/" + category.id
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                        parameterMap: function(category, type) {
+                        if (type === "update" || type === "create") {
+                             return JSON.stringify({category: category});
+                        }
+                    }   
+                },
+                pageSize: 15,
+                serverFiltering: false,
+                serverSorting: false,
+                serverPaging: false,
+                schema: {
+                    model: {
+                        id: "id",
+                        fields: {
+                            name: { editable: true }
+                            
+                        }
+                    }
+                }
+            });
+            console.log(dataSource);
+        $("#grid").kendoGrid({
+            dataSource: dataSource,
+            height: 400,
+            sortable: true,
+            reorderable: true,
+            resizable: true,
+            pageable: true,
+            batch: true,
+            filterable: true,
+            editable: "inline",
+            toolbar: ["create", "save","cancel"],
+            columns: [
+                { title: "Category Name",field: "name",width: "150px" },
+                { command: ["destroy"], title: "Delete", width: "40px" },
+                { command: ["edit"], title: "Edit", width: "70px" }]
+            
+        });
+   
+    });
+
+
+</script>

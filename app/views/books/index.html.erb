@@ -1,0 +1,130 @@
+<header class="well">
+    <div class="container text-center">
+        <h1>Online Book Shopping</h1>
+        <h3>Get knowledge and Share knowledge</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <%= link_to 'Home',  new_user_session_path, method: 'get' %>
+            </div>
+            <div class="col-md-2">
+                <%= link_to 'Sign in',  new_user_session_path, method: 'get' %>
+            </div>
+            <div class="col-md-2">
+                <%= link_to 'Books',  books_path, method: 'get' %>
+            </div>
+            <div class="col-md-2">
+                <%= link_to 'Posts',  posts_path, method: 'get' %>
+            </div>
+            <div class="col-md-2">
+                <%= link_to 'Sign Out',  destroy_user_session_path, method: 'delete' %>
+            </div>
+            <div class="col-md-2">
+                <%= link_to 'About',  destroy_user_session_path, method: 'delete' %>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="grid"></div>
+
+<script>
+    $(document).ready(function () {
+        var crudServiceBaseUrl = "/books",
+            dataSource = new kendo.data.DataSource({
+
+                transport: {
+                    read:  {
+                        url: crudServiceBaseUrl,
+                        dataType: "json"
+                    },
+                     create: {
+                        url: crudServiceBaseUrl,
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    update: {
+                        url: function(book) {
+                            return crudServiceBaseUrl + "/" + book.id;
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "PUT"
+                    },
+                    destroy: {
+                        url: function(book) {
+                            return crudServiceBaseUrl + "/" + book.id
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                        parameterMap: function(book, type) {
+                        if (type === "update" || type === "create") {
+                             return JSON.stringify({book: book});
+                        }
+                    }   
+                },
+                pageSize: 15,
+                serverFiltering: false,
+                serverSorting: false,
+                serverPaging: false,
+                schema: {
+                    model: {
+                        id: "id",
+                        fields: {
+                            book_name: { editable: true },
+                            price: { type: "string" }   
+                           
+                        }
+                    }
+                }
+            });
+            console.log(dataSource);
+        $("#grid").kendoGrid({
+            dataSource: dataSource,
+            height: 400,
+            sortable: true,
+            reorderable: true,
+            resizable: true,
+            pageable: true,
+            batch: true,
+            filterable: true,
+            editable: "inline",
+            toolbar: ["create", "save","cancel"],
+            columns: [
+                { title: "Book Name",field: "book_name",width: "150px" },
+                { title: "Price",field: "price", width: "150px" },
+                { field: "category",title:"category", editor: categoryDropDownEditor,template: "#= (data.category) ? category.name : '' #", width: "150px"},
+                { command: ["destroy"], title: "Delete", width: "50px" },
+                { command: ["edit"], title: "Edit", width: "80px" }]
+            
+        });
+         function categoryDropDownEditor(container, options) { 
+                        $('<input required data-text-field="name" data-value-field="id" data-bind="value:new_name"/>')
+                          .attr("data-bind", "value:category")
+                          .appendTo(container)
+                          .kendoDropDownList({
+                              autoBind: false,
+                              optionLabel: "Select category",
+                              dataTextField: "name",
+                              dataValueField: "category_id",
+                              dataSource: {
+                                  transport: {
+                                      read:{
+                                        url: function() {
+                                          return "/categories"},
+                                        dataType: "json"
+                                      }
+                                  }
+                              },
+                          });
+                      console.log('coming here')                     
+                    }
+   
+    });
+
+
+</script>

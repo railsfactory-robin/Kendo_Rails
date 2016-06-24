@@ -1,0 +1,107 @@
+<div id="grid"></div>
+
+<script>
+    $(document).ready(function () {
+        var crudServiceBaseUrl = "/posts",
+            dataSource = new kendo.data.DataSource({
+
+                transport: {
+                    read:  {
+                        url: crudServiceBaseUrl,
+                        dataType: "json"
+                    },
+                     create: {
+                        url: crudServiceBaseUrl,
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    update: {
+                        url: function(post) {
+                            return crudServiceBaseUrl + "/" + post.id;
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "PUT"
+                    },
+                    destroy: {
+                        url: function(post) {
+                            return crudServiceBaseUrl + "/" + post.id
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                        parameterMap: function(post, type) {
+                        if (type === "update" || type === "create") {
+                            return JSON.stringify({post: post});
+                        }
+                    }   
+                },
+                pageSize: 15,
+                serverFiltering: false,
+                serverSorting: false,
+                schema: {
+                    model: {
+                        id: "id",
+                        fields: {
+                            name: { editable: true },
+                            title: { type: "string" },
+                            content: { type: "string" },
+                        }
+                    }
+                }
+            });
+            console.log(dataSource);
+        $("#grid").kendoGrid({
+            dataSource: dataSource,
+            height: 400,
+            sortable: true,
+            reorderable: true,
+            resizable: true,
+            pageable: true,
+            batch: true,
+            filterable: true,
+            toolbar: ["create", "save","cancel"],
+            columns: [
+                { title: "Post Name",field: "name",width: "150px" },
+                { title: "title",field: "title",width: "150px" },
+                { title: "Price",field: "content", width: "150px" }],
+            editable: "inline"
+        });
+   
+    });
+
+
+</script>
+<!-- <p id="notice"><%= notice %></p>
+
+<h1>Listing Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @posts.each do |post| %>
+      <tr>
+        <td><#%= post.name %></td>
+        <td><#%= post.title %></td>
+        <td><#%= post.content %></td>
+        <td><#%= link_to 'Show', post %></td>
+        <td><#%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><#%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <%# end %>
+  </tbody>
+</table>
+
+<br>
+
+<#%= link_to 'New Post', new_post_path %> -->
