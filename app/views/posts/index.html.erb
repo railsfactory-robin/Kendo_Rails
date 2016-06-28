@@ -1,4 +1,30 @@
-<div id="grid"></div>
+<header class="header">
+    <div class="container text-center">
+        <span class="main-heading">Online Book Shopping</span>
+        <span class="sub-heading">Get knowledge and Share knowledge</span>
+    </div>
+</header>
+        <ul class="menu list-unstyled list-inline">
+            <li>
+                <%= link_to 'Home',  new_user_session_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Sign in',  new_user_session_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Books',  books_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Posts',  posts_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Sign Out',  destroy_user_session_path, method: 'delete' %>
+            </li>
+            <li>
+                <%= link_to 'About',  destroy_user_session_path, method: 'delete' %>
+            </li>
+        </ul>
+        <div id="grid"></div>
 
 <script>
     $(document).ready(function () {

@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require kendo/kendo.web.min
 //= require bootstrap-sprockets
+//=require jssor.slider.mini
+//=require slider
 //= require_tree .

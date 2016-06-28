@@ -1,0 +1,137 @@
+ /* jssor slider arrow navigator skin 11 css */
+    /*
+    .jssora11l                  (normal)
+    .jssora11r                  (normal)
+    .jssora11l:hover            (normal mouseover)
+    .jssora11r:hover            (normal mouseover)
+    .jssora11l.jssora11ldn      (mousedown)
+    .jssora11r.jssora11rdn      (mousedown)
+    */
+    .jssora11l, .jssora11r {
+        display: block;
+        position: absolute;
+        /* size of arrow element */
+        width: 37px;
+        height: 37px;
+        cursor: pointer;
+        background: url(assets/a11.png) no-repeat;
+        overflow: hidden;
+    }
+    .jssora11l { background-position: -11px -41px; }
+    .jssora11r { background-position: -71px -41px; }
+    .jssora11l:hover { background-position: -131px -41px; }
+    .jssora11r:hover { background-position: -191px -41px; }
+    .jssora11l.jssora11ldn { background-position: -251px -41px; }
+    .jssora11r.jssora11rdn { background-position: -311px -41px; }
+    /* jssor slider bullet navigator skin 05 css */
+    /*
+    .jssorb05 div           (normal)
+    .jssorb05 div:hover     (normal mouseover)
+    .jssorb05 .av           (active)
+    .jssorb05 .av:hover     (active mouseover)
+    .jssorb05 .dn           (mousedown)
+    */
+    .jssorb05 {
+        position: absolute;
+    }
+    .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+        position: absolute;
+        /* size of bullet elment */
+        width: 16px;
+        height: 16px;
+        background: url(assets/b05.png) no-repeat;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .jssorb05 div { background-position: -7px -7px; }
+    .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+    .jssorb05 .av { background-position: -67px -7px; }
+    .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+	.header{
+		background-color: #F5F5F5;
+		padding: 16px;
+	}
+	.main-heading{
+		display: block;
+    	font-size: 26px;
+    	font-weight: 800;
+	}
+	.sub-heading{
+		display: block;
+    	font-size: 22px;
+	}
+	.menu{
+	 background-color: #2DAA9E;
+     color: #fffffF;
+     margin-bottom: 0px;
+	}
+    .menu li {
+        display: inline-block;
+        width: 16.3%;
+        padding: 0;
+        text-align: center;
+    }
+    .menu li a {
+        display: block;
+        padding: 12px 0;
+        color: white !important;
+    }
+	 a{
+		color: white;
+	}
+	.footer{
+		padding: 10px 0;
+		background-color: #F5F5F5;
+		color: black;
+		border-bottom: 3px solid #2DAA9E;
+		border-top: 1px solid black;
+	}
+	.content-section{
+		padding: 50px 0;
+		background-color: #F5F5F5;
+	}
+	.left-content{
+ 		width: 50%;
+		float: left;
+		border-right:2px solid #2DAA9E; 
+ 	}
+ 	.right-content{
+ 		width: 50%;
+		float: right;
+ 	}
+ 	.content p{
+ 		font-size: 14px;
+	    line-height: 20px;
+	    font-family: cursive;
+	    padding: 12px 17px;
+	    text-align: justify;
+	    text-indent: 34px;
+ 	}
+ 	.content button{
+	 	background-color: #2DAA9E; 
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+ 		border-radius: 12px;
+ 		
+ 	}
+	.middle-line{
+		width: 2%;
+		float: left;
+		background-color: red;
+	}
+	.image-right{
+		float: right;
+    	margin: 12px 15px;
+	}
+	.image-left{
+		float: left;
+    	margin: 12px 15px;
+	}

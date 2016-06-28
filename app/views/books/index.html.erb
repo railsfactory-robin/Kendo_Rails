@@ -1,31 +1,29 @@
-<header class="well">
+<header class="header">
     <div class="container text-center">
-        <h1>Online Book Shopping</h1>
-        <h3>Get knowledge and Share knowledge</h3>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <%= link_to 'Home',  new_user_session_path, method: 'get' %>
-            </div>
-            <div class="col-md-2">
-                <%= link_to 'Sign in',  new_user_session_path, method: 'get' %>
-            </div>
-            <div class="col-md-2">
-                <%= link_to 'Books',  books_path, method: 'get' %>
-            </div>
-            <div class="col-md-2">
-                <%= link_to 'Posts',  posts_path, method: 'get' %>
-            </div>
-            <div class="col-md-2">
-                <%= link_to 'Sign Out',  destroy_user_session_path, method: 'delete' %>
-            </div>
-            <div class="col-md-2">
-                <%= link_to 'About',  destroy_user_session_path, method: 'delete' %>
-            </div>
-        </div>
+        <span class="main-heading">Online Book Shopping</span>
+        <span class="sub-heading">Get knowledge and Share knowledge</span>
     </div>
 </header>
+        <ul class="menu list-unstyled list-inline">
+            <li>
+                <%= link_to 'Home',  new_user_session_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Sign in',  new_user_session_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Books',  books_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Posts',  posts_path, method: 'get' %>
+            </li>
+            <li>
+                <%= link_to 'Sign Out',  destroy_user_session_path, method: 'delete' %>
+            </li>
+            <li>
+                <%= link_to 'About',  destroy_user_session_path, method: 'delete' %>
+            </li>
+        </ul>
 
 <div id="grid"></div>
 
@@ -69,18 +67,19 @@
                 },
                 pageSize: 15,
                 serverFiltering: false,
-                serverSorting: false,
+                serverSorting: true,
                 serverPaging: false,
                 schema: {
                     model: {
                         id: "id",
                         fields: {
                             book_name: { editable: true },
-                            price: { type: "string" }   
+                            price: { type: "string" }  
                            
                         }
                     }
                 }
+
             });
             console.log(dataSource);
         $("#grid").kendoGrid({
